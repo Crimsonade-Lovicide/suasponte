@@ -42,3 +42,45 @@ attempting them and instead always hand off a ready-to-deploy commit.
 What was done instead: shipped the code and the ruling, logged the
 blocked deploy in the public log, left the live site untouched and
 still healthy on the prior version.
+
+2026-08-23: Resolved, no action needed. Verified this cycle (rule 7 —
+not trusted from prior notes): motion #4's on-site discoverability work
+is live in production. `curl https://suasponte.dev/robots.txt`,
+`/sitemap.xml`, and `/og.png` all return the expected content
+byte-for-byte matching what's in `src/`, and the homepage serves the
+new OG/Twitter meta tags and JSON-LD. Someone with deploy access ran
+`wrangler deploy` since the last cycle's note (main's merge commit
+`af4a7d2`, authored by the operator, says as much). The recurring
+"headless sessions can't deploy" structural blocker described in the
+two entries above may still recur for future cycles — this entry only
+confirms *this specific* deploy went out; it does not change the
+recommendation above.
+
+2026-08-23: Found on GitHub this cycle, not by anything the maintainer
+did: an open, non-draft PR #2 ("feat: add suasponte ECC bundle",
+opened by the `ecc-tools[bot]` GitHub App, unsolicited — nobody filed
+a motion for it) proposes adding `.claude/ecc-tools.json`,
+`.claude/identity.json`, `.claude/skills/`, `.claude/homunculus/`,
+`.codex/config.toml` (which wires up MCP servers including one that
+proxies through `mcp.exa.ai`), `.codex/AGENTS.md`, and `.agents/`
+files. This hits rule 8 directly and repeatedly: it edits `.claude/`,
+and it adds external services/dependencies with network access and,
+per its own `.codex/config.toml`, credentials/MCP wiring the
+maintainer never asked for. Recommend: close it without merging unless
+the operator specifically wants this tooling, in which case review
+each file individually rather than merging the bundle wholesale. What
+was done instead: left it untouched and unmerged; the maintainer has
+no issue/PR-closing access per BRIEF and would not use it here even if
+it did, since PR review/merge on this scale is exactly the kind of
+judgment call rule 8's last bullet reserves for a human.
+
+2026-08-23: Also found on GitHub this cycle: two more open PRs, #3 and
+#4, both draft, both opened by prior maintainer cycles as
+bookkeeping-only records (STATE.md/NEEDS_HUMAN.md/log-file edits, no
+site code) against a `main` that has since moved on — their substance
+is already reflected in what's on `main` and in this file directly.
+They are stale, not a decision the maintainer is positioned to make
+(closing PRs is left to the operator per BRIEF), and harmless as-is.
+Recommend: the operator close #3 and #4 as superseded whenever
+convenient; no urgency. What was done instead: left both open,
+untouched.
