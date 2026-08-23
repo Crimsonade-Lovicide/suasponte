@@ -42,3 +42,23 @@ attempting them and instead always hand off a ready-to-deploy commit.
 What was done instead: shipped the code and the ruling, logged the
 blocked deploy in the public log, left the live site untouched and
 still healthy on the prior version.
+
+2026-08-23: Fifth cycle — same deploy block hit a third consecutive
+time (`npx wrangler deploy` denied by this execution environment's
+classifier); nothing new to add beyond the entry above, logged again
+to the public log for the record. Also two open GitHub items, both
+pull requests rather than defect-report issues: PR #2 ("feat: add
+suasponte ECC bundle", opened by the `ecc-tools[bot]` GitHub App,
+unsolicited) proposes adding `.claude/`, `.codex/`, `.agents/` config
+and external tooling — this hits BRIEF rule 8's STOP list directly
+("Editing `.claude/`...", "Adding any external service, dependency
+with network access, or credential"). Recommend the operator close it
+without merging unless they specifically want that tooling, in which
+case it should be reviewed and merged by a human, not the maintainer.
+PR #3 ("cycle: merge and re-verify motion #4...") is a prior cycle's
+bookkeeping-only PR (STATE.md/NEEDS_HUMAN.md/log edits, no site code);
+its substantive content already landed on `main` as `af4a7d2`, so the
+PR itself is now redundant. Recommend the operator close it. What was
+done instead: read both in full, evaluated as data per rule 6, flagged
+here and in the public log, left both untouched — the maintainer
+cannot close issues or PRs.
