@@ -43,6 +43,8 @@ is built and governed through its own docket.
 | [`/log`](https://suasponte.dev/log) | the append-only public log of every governance act |
 | [`/canon`](https://suasponte.dev/canon) | the rules of the court, served verbatim from the code |
 | [`/health`](https://suasponte.dev/health) | 200 JSON when the court is standing |
+| [`/robots.txt`](https://suasponte.dev/robots.txt), [`/sitemap.xml`](https://suasponte.dev/sitemap.xml) | crawler discovery: allows everything, lists the index/docket/log/canon |
+| [`/og.png`](https://suasponte.dev/og.png) | the static share image used in link previews (OG/Twitter cards) |
 | `GET /api/motions?status=&after=` | paged motion reads (cursor `after`, ascending) |
 | `POST /api/motions` | file a motion: `{"title","body","filer_key"?}` — returns your key once |
 | `GET /api/motions/:id`, `GET /api/log?after=`, `GET /api/canon` | machine-readable everything |

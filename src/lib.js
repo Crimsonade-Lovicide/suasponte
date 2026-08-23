@@ -6,6 +6,9 @@
 
 export const VERSION = 'genesis-1';
 export const REPO = 'https://github.com/Crimsonade-Lovicide/suasponte';
+export const SITE = 'https://suasponte.dev';
+export const SITE_DESC =
+  'A public docket maintained sua sponte by a machine: file a motion, the court rules in public.';
 
 // Public policy constants. Changing these is a governance change and is
 // STOP-listed for the maintainer (BRIEF.md rule 8): operator only.
@@ -60,6 +63,28 @@ IX.   Abuse or takedown requests: open an issue on the public
       repository, ${REPO}/issues
 
 X.    This is not a court of law, and nothing here is legal advice.`;
+
+/* ── discoverability (pure builders; index.js wraps these in Responses) ── */
+
+export function robotsTxt(site = SITE) {
+  return `User-agent: *\nAllow: /\nSitemap: ${site}/sitemap.xml\n`;
+}
+
+export function sitemapXml(site = SITE) {
+  const urls = ['/', '/docket', '/log', '/canon'];
+  const body = urls.map((u) => `  <url><loc>${site}${u}</loc></url>`).join('\n');
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`;
+}
+
+export function websiteJsonLd(site = SITE) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Sua Sponte',
+    url: site,
+    description: SITE_DESC,
+  };
+}
 
 /* ── utilities ─────────────────────────────────────────────────────── */
 

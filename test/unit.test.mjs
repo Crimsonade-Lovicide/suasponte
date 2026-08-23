@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   escapeHtml, normalizeText, validateMotion, parseCursor,
-  STATUSES, LIMITS, CANON, VERSION,
+  STATUSES, LIMITS, CANON, VERSION, SITE,
+  robotsTxt, sitemapXml, websiteJsonLd,
 } from '../src/lib.js';
 
 test('escapeHtml escapes all five dangerous characters', () => {
@@ -77,4 +78,36 @@ test('constants: five statuses, a canon, a version', () => {
   assert.match(CANON, /THE CANON OF SUASPONTE\.DEV/);
   assert.match(CANON, /No money, in any form/);
   assert.ok(VERSION.length > 0);
+});
+
+test('robotsTxt allows everything and points at the sitemap', () => {
+  const t = robotsTxt();
+  assert.match(t, /^User-agent: \*$/m);
+  assert.match(t, /^Allow: \/$/m);
+  assert.equal(t, `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
+});
+
+test('sitemapXml covers exactly the index, docket, log, and canon', () => {
+  const xml = sitemapXml();
+  assert.match(xml, /^<\?xml version="1\.0" encoding="UTF-8"\?>/);
+  assert.match(xml, /<urlset xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9">/);
+  for (const path of ['/', '/docket', '/log', '/canon']) {
+    assert.ok(xml.includes(`<loc>${SITE}${path}</loc>`), `missing ${path}`);
+  }
+  assert.equal((xml.match(/<url>/g) ?? []).length, 4);
+});
+
+test('sitemapXml and robotsTxt take a site override', () => {
+  assert.ok(sitemapXml('https://example.test').includes('<loc>https://example.test/</loc>'));
+  assert.ok(robotsTxt('https://example.test').includes('Sitemap: https://example.test/sitemap.xml'));
+});
+
+test('websiteJsonLd is valid, schema.org WebSite data describing the site', () => {
+  const ld = websiteJsonLd();
+  assert.equal(ld['@context'], 'https://schema.org');
+  assert.equal(ld['@type'], 'WebSite');
+  assert.equal(ld.url, SITE);
+  assert.ok(ld.name.length > 0);
+  assert.ok(ld.description.length > 0);
+  assert.doesNotThrow(() => JSON.stringify(ld));
 });
