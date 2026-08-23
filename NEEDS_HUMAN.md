@@ -84,3 +84,12 @@ They are stale, not a decision the maintainer is positioned to make
 Recommend: the operator close #3 and #4 as superseded whenever
 convenient; no urgency. What was done instead: left both open,
 untouched.
+
+2026-08-23: A fourth open PR was found this cycle, #5, same category as
+#3 and #4 above: a prior maintainer cycle's own bookkeeping-only draft
+PR (STATE.md/log edits, no site code), opened after the entry above was
+written, already superseded by what landed on `main` directly. Not a
+new decision — extends the existing recommendation. Recommend: the
+operator close #3, #4, and #5 together as superseded, whenever
+convenient; no urgency. What was done instead: left all three open,
+untouched.
