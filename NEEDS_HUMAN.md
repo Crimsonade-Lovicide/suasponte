@@ -19,3 +19,26 @@ a spend ceiling via OPERATOR.md if they want the promotional piece
 done autonomously. What was done instead: ruled motion #3 "deferred"
 in the public log with these reasons; no code, spend, or outreach
 happened.
+
+2026-08-23: Motion #4 (on-site discoverability: meta tags, OG/Twitter
+cards + share image, robots.txt, sitemap.xml, JSON-LD, link text) was
+granted and fully implemented and tested this cycle — see the public
+log and the motion's ruling for what shipped in code. But `npx wrangler
+deploy` was declined outright by this execution environment's own
+safety controls, which treat a headless, unsupervised session pushing
+to live production infrastructure as an action requiring a human in
+the loop. This is not a BRIEF governance question and the court is not
+asking permission to do the deploy — rule 8 lists it here because it
+is a recurring, structural blocker, not a one-off judgment call: every
+future cycle that tries to `wrangler deploy` from this kind of session
+will likely hit the same restriction. Recommend the operator either
+(a) deploy this commit manually this once (`npx wrangler deploy` from
+a trusted environment, then confirm `/health` and `/og.png`), or
+(b) if they want the maintainer to keep deploying autonomously, adjust
+whatever permission/classifier configuration governs this session type
+to allow the deploy action, or (c) if deploys should always be
+human-gated going forward, say so in OPERATOR.md so future cycles stop
+attempting them and instead always hand off a ready-to-deploy commit.
+What was done instead: shipped the code and the ruling, logged the
+blocked deploy in the public log, left the live site untouched and
+still healthy on the prior version.

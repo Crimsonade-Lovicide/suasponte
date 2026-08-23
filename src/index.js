@@ -9,8 +9,8 @@
  */
 
 import {
-  VERSION, REPO, LIMITS, STATUSES, CANON,
-  escapeHtml, validateMotion, parseCursor,
+  VERSION, REPO, SITE, SITE_DESC, LIMITS, STATUSES, CANON,
+  escapeHtml, validateMotion, parseCursor, robotsTxt, sitemapXml, websiteJsonLd,
 } from './lib.js';
 
 async function sha256hex(s) {
@@ -138,15 +138,69 @@ const FAVICON = `data:image/svg+xml,${encodeURIComponent(
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="78" font-size="78">&#9878;</text></svg>`
 )}`;
 
-function page(title, main, { desc } = {}) {
+// Static share-image (600x315 PNG): background + double-line rule + "SUA
+// SPONTE / A PUBLIC DOCKET" in a hand-rolled bitmap font, generated once
+// offline (no canvas/image library available in the Worker runtime) and
+// served as-is from OG_IMAGE_PNG below. Regenerate by re-running the
+// generator script kept in the PR/commit history if the brand ever changes.
+const OG_IMAGE_B64 =
+  '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';
+
+function page(title, main, { desc, path, ogType = 'website' } = {}) {
+  const description = desc ?? SITE_DESC;
+  const canonical = path ? `${SITE}${path}` : null;
+  const ogTags = canonical ? `
+<link rel="canonical" href="${escapeHtml(canonical)}">
+<meta property="og:type" content="${escapeHtml(ogType)}">
+<meta property="og:site_name" content="Sua Sponte">
+<meta property="og:url" content="${escapeHtml(canonical)}">
+<meta property="og:title" content="${escapeHtml(title)}">
+<meta property="og:description" content="${escapeHtml(description)}">
+<meta property="og:image" content="${SITE}/og.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="315">
+<meta property="og:image:alt" content="Sua Sponte &mdash; a public docket">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${escapeHtml(title)}">
+<meta name="twitter:description" content="${escapeHtml(description)}">
+<meta name="twitter:image" content="${SITE}/og.png">
+<script type="application/ld+json">${JSON.stringify(websiteJsonLd()).replace(/</g, '\\u003c')}</script>` : '';
   const html = `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="${escapeHtml(desc ?? 'A public docket maintained sua sponte by a machine.')}">
+<meta name="description" content="${escapeHtml(description)}">
 <link rel="icon" href="${FAVICON}">
-<title>${escapeHtml(title)}</title>
+<title>${escapeHtml(title)}</title>${ogTags}
 <style>${CSS}</style>
 </head>
 <body>
@@ -232,7 +286,8 @@ ${filingForm()}
     ? recent.map((m) => motionCard(m)).join('\n')
     : '<p class="meta">The docket is empty.</p>';
   const more = `<p class="pager"><a href="/docket">the full docket &rarr;</a></p>`;
-  return page('Sua Sponte', intro + list + more);
+  return page('Sua Sponte — a public docket maintained by a machine', intro + list + more,
+    { desc: SITE_DESC, path: '/' });
 }
 
 async function docketPage(env, url) {
@@ -243,9 +298,11 @@ async function docketPage(env, url) {
     ? rows.map((m) => motionCard(m)).join('\n')
     : '<p class="meta">Nothing further.</p>';
   const pager = rows.length === LIMITS.htmlPage
-    ? `<p class="pager"><a href="/docket?before=${rows[rows.length - 1].id}">older &rarr;</a></p>`
+    ? `<p class="pager"><a href="/docket?before=${rows[rows.length - 1].id}">older filings &rarr;</a></p>`
     : '';
-  return page('The docket - Sua Sponte', `<h2>The docket</h2>${list}${pager}`);
+  return page('The docket - Sua Sponte', `<h2>The docket</h2>${list}${pager}`,
+    { desc: 'Every motion filed at Sua Sponte, newest first: granted, denied, deferred, and pending.',
+      path: url.pathname + url.search });
 }
 
 async function motionPage(env, id) {
@@ -256,7 +313,7 @@ async function motionPage(env, id) {
     ? `<h2>Log entries for this motion</h2>` + entries.map(logRow).join('\n')
     : '';
   return page(`Motion #${m.id} - Sua Sponte`, motionCard(m, { full: true }) + logHtml,
-    { desc: `Motion #${m.id}: ${m.title}` });
+    { desc: `Motion #${m.id}: ${m.title}`, path: `/motion/${m.id}` });
 }
 
 function logRow(e) {
@@ -276,19 +333,23 @@ async function logPage(env, url) {
   const { results } = await stmt.all();
   const list = results.length ? results.map(logRow).join('\n') : '<p class="meta">Nothing logged yet.</p>';
   const pager = results.length === 50
-    ? `<p class="pager"><a href="/log?before=${results[results.length - 1].id}">older &rarr;</a></p>`
+    ? `<p class="pager"><a href="/log?before=${results[results.length - 1].id}">older entries &rarr;</a></p>`
     : '';
   const note = `<p>Every ruling and every act of governance lands here, in order, forever.
 The database refuses edits to this table by trigger
 (<a href="${REPO}/blob/main/migrations/0001_init.sql">see the schema</a>).</p>`;
-  return page('The log - Sua Sponte', `<h2>The public log</h2>${note}${list}${pager}`);
+  return page('The log - Sua Sponte', `<h2>The public log</h2>${note}${list}${pager}`,
+    { desc: 'The append-only public log of every ruling and governance action at Sua Sponte.',
+      path: url.pathname + url.search });
 }
 
 function canonPage() {
   return page('The canon - Sua Sponte',
     `<h2>The canon</h2><pre class="canon">${escapeHtml(CANON)}</pre>
      <p class="meta">Served verbatim from <a href="${REPO}/blob/main/src/index.js">the code</a>.
-     Also at <a href="/api/canon">/api/canon</a> as plain text.</p>`);
+     Also at <a href="/api/canon">/api/canon</a> as plain text.</p>`,
+    { desc: 'The ten articles governing Sua Sponte: how the court acts, rules, and cannot be moved.',
+      path: '/canon' });
 }
 
 function receiptPage(r) {
@@ -423,7 +484,16 @@ async function route(req, env) {
     if (path === '/canon') return canonPage();
     if (path === '/file') return Response.redirect(new URL('/#file', url).toString(), 302);
     if (path === '/robots.txt') {
-      return new Response('User-agent: *\nAllow: /\n', { headers: { 'content-type': 'text/plain; charset=utf-8' } });
+      return new Response(robotsTxt(), { headers: { 'content-type': 'text/plain; charset=utf-8' } });
+    }
+    if (path === '/sitemap.xml') {
+      return new Response(sitemapXml(), { headers: { 'content-type': 'application/xml; charset=utf-8' } });
+    }
+    if (path === '/og.png') {
+      const bytes = Uint8Array.from(atob(OG_IMAGE_B64), (c) => c.charCodeAt(0));
+      return new Response(bytes, {
+        headers: { 'content-type': 'image/png', 'cache-control': 'public, max-age=86400' },
+      });
     }
   }
   if (method === 'POST' && path === '/file') return handleFileForm(env, req);
