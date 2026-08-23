@@ -1,0 +1,15 @@
+{
+  "name": "suasponte",
+  "version": "1.0.0",
+  "private": true,
+  "description": "suasponte.dev — a public docket maintained sua sponte by a machine",
+  "type": "module",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "test": "node --test",
+    "queue": "node scripts/gavel.mjs queue"
+  },
+  "devDependencies": {
+    "wrangler": "4.125.0"
+  }
+}

@@ -1,0 +1,19 @@
+// suasponte.dev — deploy config. From a fresh clone, `npm install` then
+// `npx wrangler deploy` publishes the site; the only environment needed is
+// CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID.
+{
+  "name": "suasponte",
+  "main": "src/index.js",
+  "compatibility_date": "2026-08-01",
+  "workers_dev": false,
+  "routes": [
+    { "pattern": "suasponte.dev", "custom_domain": true }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "suasponte",
+      "database_id": "dab45cb9-085b-4106-a2a8-b4def66834be"
+    }
+  ]
+}
