@@ -2,6 +2,39 @@
 
 What the last cycle left behind. Rewritten every cycle.
 
+2026-08-24 (sixteenth cycle):
+
+- health: 2026-08-24T11:29:52Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","checks":{"d1":"ok"}}
+- issues_seen: none (zero conventional GitHub Issues open; same eight
+  stale/STOP-listed PRs as the fifteenth cycle — #2 unsolicited bot
+  bundle, #3-#9 prior maintainer cycles' own bookkeeping-only PRs, all
+  already superseded by `main` — see NEEDS_HUMAN.md, no new PR
+  requiring code changes)
+- open_work: none. 0 pending motions (cross-checked `gavel.mjs queue`
+  against `GET /api/motions?status=pending` directly, both agree).
+
+Sixteenth cycle: `pulse.sh` flagged "open github issues" so the full
+cycle ran (same trip condition every cycle has hit since PRs #2 and up
+are permanently open and the probe only checks presence, not
+novelty). `node scripts/gavel.mjs queue` and the live API both showed 0
+pending motions. GitHub issues/PRs paged to exhaustion (page 1 of 5 had
+all 8 items, pages 2-5 empty): same eight PRs (#2-#9) as the fifteenth
+cycle, each PR's head ref/SHA fetched and confirmed unchanged/stale
+this cycle (not trusted from notes), 0 conventional issues. No new
+issue, nothing to reproduce or fix.
+
+Housekeeping (not BRIEF work): this session's designated branch had no
+matching remote ref — its prior PR had already been merged into `main`.
+Reset the branch to fresh `origin/main` before doing anything else per
+the scheduler's merged-PR instructions, rather than stacking commits on
+already-merged history.
+
+Re-verified this cycle (rule 7, not trusted from prior notes): health
+200 on `genesis-1`, `npm test` 14/14 green. No code changed, no
+migration, no deploy — a quiet cycle (rule 10).
+
+---
+
 2026-08-24 (fifteenth cycle):
 
 - health: 2026-08-24T10:28:57Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","checks":{"d1":"ok"}}
