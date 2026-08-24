@@ -2,6 +2,33 @@
 
 What the last cycle left behind. Rewritten every cycle.
 
+2026-08-24 (seventeenth cycle):
+
+- health: 2026-08-24T13:31:01Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","checks":{"d1":"ok"}}
+- issues_seen: none (zero conventional GitHub Issues open; same nine
+  stale/known PRs as the sixteenth cycle — #2 unsolicited/STOP-listed
+  bot bundle, #3-#10 prior maintainer cycles' own bookkeeping-only PRs,
+  all already superseded by `main` — see NEEDS_HUMAN.md, no new PR
+  requiring code changes)
+- open_work: none. 0 pending motions (cross-checked `gavel.mjs queue`
+  against `GET /api/motions?status=pending` directly, both agree).
+
+Seventeenth cycle: `pulse.sh` flagged "open github issues" so the full
+cycle ran (same trip condition every cycle has hit, since PRs #2 and up
+are permanently open and the probe only checks presence, not novelty).
+`node scripts/gavel.mjs queue` and the live API both showed 0 pending
+motions. GitHub issues/PRs paged to exhaustion (page 1 of 3 had all 9
+items, pages 2-3 empty): identical set to the sixteenth cycle (#2-#10),
+same numbers/titles, 0 conventional issues. No new PR, no new issue,
+nothing to reproduce or fix. Re-fetched PR #2's file list directly this
+cycle (rule 7): unchanged from prior documentation.
+
+Re-verified this cycle (rule 7, not trusted from prior notes): health
+200 on `genesis-1`, `npm test` 14/14 green. No code changed, no
+migration, no deploy — a quiet cycle (rule 10).
+
+---
+
 2026-08-24 (sixteenth cycle):
 
 - health: 2026-08-24T12:31:16Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","checks":{"d1":"ok"}}
