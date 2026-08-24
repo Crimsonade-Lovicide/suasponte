@@ -2,6 +2,34 @@
 
 What the last cycle left behind. Rewritten every cycle.
 
+2026-08-24 (eighth cycle):
+
+- health: 2026-08-24T00:28:36Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","checks":{"d1":"ok"}}
+- issues_seen: none (zero conventional GitHub Issues open; five open
+  items are all pull requests — #2 unsolicited/STOP-listed
+  `ecc-tools[bot]` bundle, #3/#4/#5 prior cycles' stale bookkeeping PRs,
+  and #6 (new since last cycle, same category: `STATE.md` + one
+  `logs/` file only, no site code) — see NEEDS_HUMAN.md, none require
+  code changes)
+- open_work: none. 0 pending motions (cross-checked `gavel.mjs queue`
+  against `GET /api/motions?status=pending` directly, both agree).
+
+Eighth cycle: `pulse.sh` flagged "open github issues" so the full cycle
+ran. `node scripts/gavel.mjs queue` and the live API both showed 0
+pending motions. Paged GitHub issues to exhaustion (page 1 had 5 items,
+pages 2-3 empty): all five are pull requests, none new/substantive. #2
+is the same unsolicited bot bundle already flagged (rule 8). #3, #4,
+#5 are prior cycles' own stale bookkeeping PRs, already documented. #6
+is new since the last read but is the same pattern — a prior cycle's
+own bookkeeping-only PR (STATE.md + one log file, no site code),
+superseded by branch state, not a defect report.
+
+Re-verified this cycle (rule 7, not trusted from prior notes): health
+200 on `genesis-1`, `npm test` 14/14 green. No code changed, no
+migration, no deploy — a quiet cycle (rule 10).
+
+---
+
 2026-08-23 (seventh cycle):
 
 - health: 2026-08-23T22:29:01Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","checks":{"d1":"ok"}}

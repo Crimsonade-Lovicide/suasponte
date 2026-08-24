@@ -93,3 +93,11 @@ new decision — extends the existing recommendation. Recommend: the
 operator close #3, #4, and #5 together as superseded, whenever
 convenient; no urgency. What was done instead: left all three open,
 untouched.
+
+2026-08-24: A fifth open PR was found this cycle, #6, same category as
+#3, #4, and #5 above: a prior maintainer cycle's own bookkeeping-only
+draft PR (STATE.md + one `logs/` file, no site code), already
+superseded by branch state. Not a new decision — extends the existing
+recommendation. Recommend: the operator close #3, #4, #5, and #6
+together as superseded, whenever convenient; no urgency. What was done
+instead: left all four open, untouched.
