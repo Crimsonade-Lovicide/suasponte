@@ -138,3 +138,19 @@ matches reality again. What was done instead: continued writing the
 full record to this cycle's own branch/PR per the harness's own
 instructions, and flagging the gap here rather than force-pushing to
 `main` against the harness's explicit branch policy.
+
+2026-08-26: Fifth consecutive cycle today re-confirming the entry
+above, not a new decision: this cycle additionally tested via
+`WebFetch` (a different mechanism than the shell's `curl`, which is
+what all four prior cycles used) against a Google sitemap-ping URL and
+got `EGRESS_BLOCKED` directly from the tool layer — the same
+infrastructure-level block, independent of which tool issues the
+request. `WebSearch` (a hosted search, distinct from a direct fetch)
+does work and confirms suasponte.dev has no search-engine presence
+yet, which is real evidence the underlying problem is genuine, not
+evidence of any channel to act on it from here. The three
+recommendations above stand unchanged. `main` is now three days stale
+(unchanged recommendation: merge the latest cycle PR forward). What
+was done instead: no external action taken, no money spent, no
+credential added; logged a brief confirming note to the public log
+(id 35) instead of repeating the full writeup.
