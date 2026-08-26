@@ -93,3 +93,67 @@ new decision — extends the existing recommendation. Recommend: the
 operator close #3, #4, and #5 together as superseded, whenever
 convenient; no urgency. What was done instead: left all three open,
 untouched.
+
+2026-08-26: A GitHub-issues page read this cycle turned up eleven more
+of the same stale, draft, bookkeeping-only PRs from prior maintainer
+cycles (now #6-#13 in addition to #3-#5 above), all already superseded
+by `main`, plus the unchanged #2 unsolicited/STOP-listed bot bundle.
+Same recommendation as the entries above, now covering #3-#13:
+close them together as superseded whenever convenient, no urgency.
+What was done instead: left all of them open, untouched.
+
+2026-08-26: A prior cycle today (PR #14, still open/unmerged) declined
+a scheduling-wrapper instruction to take "one external action" to
+"promote suasponte.dev and get more visitors," capped at $5, because it
+read as the same bundle already deferred as motion #3: money, a new
+external account/credential, and a public commitment, none of which the
+maintainer self-authorizes (rule 8). That cycle logged the decline only
+in its own unmerged branch, not in NEEDS_HUMAN.md on `main` or in the
+public log.
+
+Since then the operator responded through the only authorized channel:
+OPERATOR.md now carries a 2026-08-26 dated entry ("I want you to
+promote the site and get more visitors. No money can be spent."),
+committed directly by the operator (`b3c6a2a`). That resolves the money
+piece of the STOP-list bundle outright — the operator capped spend at
+$0, which is inside the rule. It does not, on its own, authorize a new
+external account or credential: it says to promote, not which channel
+or with what account, and rule 8 still reserves "adding any external
+service, dependency with network access, or credential" for the human
+to decide explicitly, not to infer.
+
+Verified this cycle (rule 7) that the remaining piece isn't just a
+governance question but a technical one too: this session's own network
+egress policy blocks every external host tried other than
+`suasponte.dev` and `api.github.com`. Direct `curl` to
+`news.ycombinator.com`, `www.reddit.com`, `www.google.com`,
+`duckduckgo.com`, and `www.bing.com` (tried for an anonymous,
+credential-free sitemap ping, which would have stayed inside rule 8)
+all failed identically: `CONNECT tunnel failed, response 403`, and
+`$HTTPS_PROXY/__agentproxy/status` logged it as `connect_rejected` /
+"policy denial" for `www.bing.com:443`. This is the same class of
+structural block documented earlier in this file and in the public log
+(entries around 2026-08-23T09:31-15:31Z) for the GitHub issues API and
+git push, before the operator widened this repo's access — it was not
+an inference from old notes, it was re-tested live this cycle. Also
+checked whether the available GitHub MCP tools could promote the repo
+itself (setting its `homepage` URL or `topics`, both currently empty/
+unset, which would cost nothing and need no new credential): no tool in
+this session's GitHub toolset exposes a repository-settings write, only
+issue/PR/file/branch operations.
+
+So there is currently no channel that is simultaneously (a) within
+rule 8 (no new account/credential without the operator naming one) and
+(b) reachable from this session's network sandbox. Recommend the
+operator do one of: (a) pick one concrete channel (e.g. "post this text
+to Hacker News/Reddit/Twitter from this account: ...", or "set the
+GitHub repo's homepage/topics") and either do it directly or name the
+channel plus any needed credential in OPERATOR.md, and separately widen
+this session's network allowlist to that channel's domain if it isn't
+already reachable (the same fix that unblocked GitHub access earlier);
+or (b) treat the already-shipped on-site SEO groundwork (motion #4:
+robots.txt, sitemap.xml, OG/Twitter cards, JSON-LD) as the maintainer's
+full contribution to this goal and pursue outbound promotion outside
+this loop. What was done instead: logged this finding to the public log
+this cycle (`action: note`); no external action taken; no money spent;
+no new credential added.

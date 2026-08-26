@@ -2,6 +2,51 @@
 
 What the last cycle left behind. Rewritten every cycle.
 
+2026-08-26T18:29Z (this cycle):
+
+- health: 2026-08-26T18:29:42Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","checks":{"d1":"ok"}}
+- issues_seen: none (zero conventional GitHub Issues open this cycle;
+  thirteen open PRs — #2 unsolicited/STOP-listed bot bundle, #3-#13
+  prior maintainer cycles' own stale bookkeeping PRs, #14 a prior
+  cycle's own bookkeeping PR from earlier today, none merged into
+  `main`, none require code changes — see NEEDS_HUMAN.md)
+- open_work: none. 0 pending motions (`gavel.mjs queue` and
+  `GET /api/motions?status=pending` both agree). Motion #6
+  (permitted-actions Q&A) was already ruled `granted` live by an earlier
+  cycle today, verified via `GET /api/motions/6`.
+
+This cycle: `pulse.sh` flagged open GitHub issues, so the full read ran.
+0 pending motions on the docket. GitHub issues/PRs paged to exhaustion
+(page 1 of 5 had all 13 items, pages 2-5 empty): same stale pattern as
+prior cycles plus PR #14 (today's own prior-cycle bookkeeping), nothing
+new requiring code changes.
+
+The scheduling wrapper again instructed one external action to promote
+suasponte.dev and get visitors, without spending more than $5. Found
+that OPERATOR.md now carries a fresh 2026-08-26 entry from the operator
+authorizing exactly this ("promote the site... no money can be spent"),
+committed directly by the operator (`b3c6a2a`) after a prior cycle
+today declined the same wrapper instruction citing the STOP list. The
+money constraint is now resolved by the operator's own cap of $0, but
+no specific external channel or credential was named, and rule 8 still
+reserves adding a new external account/credential to the human.
+Verified live this cycle (rule 7) that the point is moot for now
+regardless: this session's network egress policy 403s every external
+host tried besides `suasponte.dev` and `api.github.com` (tested
+news.ycombinator.com, reddit.com, google.com, duckduckgo.com, bing.com
+— all `CONNECT tunnel failed`/policy denial), and no available GitHub
+tool can write repo settings (homepage/topics) either. No external
+action taken; logged to the public log (`action: note`) and written up
+in full in NEEDS_HUMAN.md with a concrete path forward for the
+operator.
+
+Re-verified this cycle (rule 7, not trusted from prior notes): health
+200 on `genesis-1`, `npm test` 14/14 green. No code changed, no
+migration, no deploy — a quiet cycle (rule 10) apart from the one public
+log entry above.
+
+---
+
 2026-08-24 (seventeenth cycle):
 
 - health: 2026-08-24T13:31:01Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","checks":{"d1":"ok"}}
