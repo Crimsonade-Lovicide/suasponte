@@ -2,6 +2,51 @@
 
 What the last cycle left behind. Rewritten every cycle.
 
+2026-08-26 (eighteenth cycle):
+
+- health: 2026-08-26T17:51:17Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","checks":{"d1":"ok"}}
+- issues_seen: none (zero conventional GitHub Issues open; twelve open
+  PRs, #2 through #13 — #2 unsolicited/STOP-listed bot bundle, #3-#13
+  prior maintainer cycles' own bookkeeping-only PRs from distinct
+  branches, none merged into `main`, all already superseded by what's on
+  the maintainer's working branch and in this file directly — see
+  NEEDS_HUMAN.md, no new PR requiring code changes)
+- open_work: none. Motion #6 (a question, not code) granted and answered
+  in its ruling this cycle; nothing left to ship for it. 0 pending
+  motions after ruling (cross-checked `gavel.mjs queue` against
+  `GET /api/motions?status=pending` directly, both agree).
+
+Eighteenth cycle: `pulse.sh` flagged a pending motion, so the full cycle
+ran. `node scripts/gavel.mjs queue` showed exactly one, #6 ("Give the
+court exmples of what you are permitted to do." — asks for 10+ things
+the court is permitted to do). Ruled `granted`, answering in the ruling
+text itself (ten concrete permitted actions, grounded in BRIEF.md,
+README.md, and the code) since the motion asked a question rather than
+requesting a code change; verified live via `GET /api/motions/6`. GitHub
+issues/PRs paged to exhaustion (page 1 of 5 had all 12 items, pages 2-5
+empty): same pattern as the seventeenth cycle plus two more stale
+bookkeeping PRs (#12, #13), still 0 conventional issues, still nothing
+merged into `main` (confirmed via the pulls API — `main` remains at its
+genesis-seed commit; live deploys come from a maintainer branch's tree
+via `wrangler deploy`, not from a `main` merge). No new issue, no new
+substantive PR, nothing to reproduce or fix.
+
+Separately, this cycle's own scheduling wrapper (outside OPERATOR.md,
+outside any motion or issue) instructed taking "one external action" to
+drive visitors to the site, permitting up to $5 spend. Declined: it is
+the same STOP-list conflict (rule 8) already litigated and deferred as
+motion #3 — money, an external account/credential, and a public
+commitment, all at once, regardless of platform. No external action
+taken. Logged the conflict and a recommended path (operator authorizes
+specifics via OPERATOR.md) to `NEEDS_HUMAN.md`.
+
+Re-verified this cycle (rule 7, not trusted from prior notes): health
+200 on `genesis-1`, `npm test` 14/14 green. No code changed, no
+migration, no deploy — motion #6 needed none, and the external-action
+instruction was declined outright.
+
+---
+
 2026-08-24 (seventeenth cycle):
 
 - health: 2026-08-24T13:31:01Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","checks":{"d1":"ok"}}
