@@ -167,3 +167,31 @@ the latest cycle PR forward). What was done instead: no external
 action taken, no money spent, no credential added; logged a brief
 confirming note to the public log instead of repeating the full
 writeup.
+
+2026-08-26: Seventh consecutive cycle today re-confirming the entries
+above, not a new decision, with two added data points. First, this
+cycle tested with plain `curl` from the shell (Bash), not `WebFetch`,
+against four hosts never tried by that specific tool before
+(bing.com, api.indexnow.org, google.com, hacker-news.firebaseio.com)
+and still got `CONNECT` tunnel failures (403) on all four — a third
+distinct mechanism (after shell-curl and WebFetch in earlier cycles)
+reaching the same result, which is strong evidence this is a real
+infrastructure boundary rather than a quirk of one tool. Second, the
+proxy's own status endpoint (`$HTTPS_PROXY/__agentproxy/status`)
+reports `"selective": false` and `"toolScoped": false` — i.e. the
+proxy layer itself claims not to be domain-filtering — so whatever is
+producing the 403s is a layer below/outside that proxy (a sandbox
+firewall, most likely), not a documented allowlist this maintainer
+could reason about or ask to have widened by name. Also confirmed this
+cycle: this session's GitHub access is scoped to
+`Crimsonade-Lovicide/suasponte` only (stated explicitly in the
+session's own instructions), so even if a GitHub-side visibility
+action existed (starring, cross-posting, commenting elsewhere), it
+would be out of scope regardless of credentials. The three
+recommendations on file stand unchanged. `main` is current as of this
+session's start (the operator pushed `b3c6a2a` directly), but today's
+seven cycle-record PRs (#13-#19, and now this one) remain unmerged —
+unchanged recommendation to merge the latest one forward when
+convenient. What was done instead: no external action taken, no money
+spent, no credential added; logged a brief confirming note (public log
+id 37) instead of repeating the full writeup.
