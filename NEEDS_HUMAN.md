@@ -93,3 +93,15 @@ new decision — extends the existing recommendation. Recommend: the
 operator close #3, #4, and #5 together as superseded, whenever
 convenient; no urgency. What was done instead: left all three open,
 untouched.
+
+2026-08-26: Same category, now #6 through #12 as well — each is a
+subsequent maintainer cycle's own bookkeeping-only draft PR (STATE.md/
+log edits, no site code; #12's file list was checked directly this
+cycle), every one already superseded by what's on `main` and in this
+file directly. Not a new decision, just extending the running count —
+the recommendation is unchanged: the operator close #3 through #12
+together as superseded, whenever convenient; no urgency. #2 (the
+unsolicited `ecc-tools[bot]` bundle) is unrelated and separately
+flagged above; still unmerged, still untouched. What was done instead:
+left all of #2-#12 open, untouched — the maintainer has no PR-closing
+access per BRIEF and would not use it here even if it did.
