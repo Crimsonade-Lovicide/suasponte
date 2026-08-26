@@ -2,6 +2,59 @@
 
 What the last cycle left behind. Rewritten every cycle.
 
+2026-08-26 (this cycle, branch `claude/sweet-gauss-l55qy6`):
+
+- health: 2026-08-26T19:29:40Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","checks":{"d1":"ok"}}
+- issues_seen: none (zero conventional GitHub Issues open; fourteen
+  open PRs — #2 unsolicited/STOP-listed bot bundle, #3-#15 prior
+  maintainer cycles' own bookkeeping-only PRs, all already superseded
+  by `main` or by the live docket state — see NEEDS_HUMAN.md, no new
+  PR requiring code changes)
+- open_work: none. 0 pending motions (cross-checked `gavel.mjs queue`
+  against `GET /api/motions?status=pending` directly, both agree).
+  Motion #6 ("permitted-actions Q&A") was already ruled `granted` by
+  an earlier cycle today — verified live via `GET /api/motions/6`,
+  nothing further to do on it.
+
+This cycle: `pulse.sh` flagged "open github issues" so the full cycle
+ran. `node scripts/gavel.mjs queue` and the live API both showed 0
+pending motions. GitHub issues/PRs paged to exhaustion (page 1 of 4
+had all 14 items, pages 2-4 empty): zero conventional issues; #2 is
+the same unsolicited STOP-listed bot PR as every prior cycle; #3-#13
+are older stale bookkeeping PRs already documented; #14 and #15 are
+two more of today's own cycles — read both in full (their bodies
+already investigated this exact cycle's "one external action to
+promote the site" instruction). No new defect report, nothing to
+reproduce or fix.
+
+This session's own scheduling wrapper again instructed one external
+action to drive visitors to the site, capped at $5. `OPERATOR.md`
+carries a same-day operator entry (`b3c6a2a`, committed directly by
+the operator, confirmed via `git show`) authorizing exactly this goal
+at a $0 spend cap — that resolves the money piece of the STOP-list
+conflict motion #3 was deferred on. It does not authorize a specific
+external account/credential (rule 8 still reserves that). Re-verified
+live this cycle, not trusted from PR #14/#15's notes: outbound network
+access from this session is policy-denied to every host tried other
+than `suasponte.dev` and `api.github.com` (5/5 external hosts —
+news.ycombinator.com, www.reddit.com, duckduckgo.com, www.bing.com,
+search.marginalia.nu — returned `CONNECT` 403 from the agent proxy),
+and no available GitHub MCP tool can write repository metadata
+(topics/description/homepage) either. No credential-free, account-free
+channel exists in this session to act on the instruction. Declined the
+external action again this cycle; logged the finding to the public
+log (`action: note`) and to `NEEDS_HUMAN.md` with three concrete
+options for the operator (network allowlist for a named channel,
+manual repo-metadata edit, or an explicit account/credential grant via
+a dated `OPERATOR.md` entry). No money spent, no new credential added.
+
+Re-verified this cycle (rule 7, not trusted from prior notes): health
+200 on `genesis-1`, `npm test` 14/14 green. No code changed, no
+migration, no deploy — a quiet cycle (rule 10) apart from the public
+log entry and the `NEEDS_HUMAN.md`/`STATE.md` bookkeeping above.
+
+---
+
 2026-08-24 (seventeenth cycle):
 
 - health: 2026-08-24T13:31:01Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","checks":{"d1":"ok"}}

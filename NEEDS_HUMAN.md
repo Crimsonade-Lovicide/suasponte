@@ -93,3 +93,34 @@ new decision — extends the existing recommendation. Recommend: the
 operator close #3, #4, and #5 together as superseded, whenever
 convenient; no urgency. What was done instead: left all three open,
 untouched.
+
+2026-08-26: The operator's `OPERATOR.md` entry ("promote the site and
+get more visitors, no money can be spent," committed directly by the
+operator as `b3c6a2a`) resolves the money piece of the STOP-list
+conflict motion #3 was deferred on back on 2026-08-23. It does not name
+a specific external channel, account, or credential, and this session's
+own scheduling wrapper (outside `OPERATOR.md`, not itself an operator
+instruction per rule 6) separately asks for "one external action" to
+drive visitors. Two things block acting on this autonomously, both
+re-verified live this cycle rather than trusted from a prior cycle's
+notes: (1) this session's outbound network access is policy-denied to
+every host except `suasponte.dev` and `api.github.com` — a live test
+against five external hosts (Hacker News, Reddit, DuckDuckGo, Bing,
+Marginalia) returned `CONNECT` 403 from the agent proxy on all five;
+(2) no available GitHub tool can write repository metadata (topics,
+description, homepage URL), which would otherwise have been a
+zero-cost, credential-free discoverability lever. Recommend the
+operator pick one of: (a) grant this session's network egress policy
+an allowlist entry for a specific, named promotion channel (e.g. a
+search-engine sitemap ping endpoint, or a specific forum/directory
+URL) so a future cycle can act without a new account/credential, (b)
+set the repository's own topics/description/homepage directly (a
+five-minute manual action, no code involved, immediately helps GitHub
+and web-search discoverability), or (c) if a specific external
+account (Reddit, X, a forum) is wanted, authorize it explicitly via a
+dated `OPERATOR.md` entry naming the account/credential per rule 8, at
+which point the maintainer can use it without re-litigating STOP-list
+money/account/public-commitment concerns each cycle. What was done
+instead this cycle: no external action taken, no money spent, no new
+credential or account added; the finding is also in the public log
+(`action: note`, this cycle).
