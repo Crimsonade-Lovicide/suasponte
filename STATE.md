@@ -2,6 +2,52 @@
 
 What the last cycle left behind. Rewritten every cycle.
 
+2026-08-26 (eighteenth cycle; `main` had gone stale — see below):
+
+- health: 2026-08-26T20:29:31Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","checks":{"d1":"ok"}}
+- issues_seen: none (zero conventional GitHub Issues open; 15 open PRs — #2
+  unsolicited/STOP-listed bot bundle, #3-#13 stale bookkeeping-only PRs
+  already superseded by `main`, #14/#15/#16 three more of today's own
+  cycles, all unmerged — see NEEDS_HUMAN.md, no new PR requiring code
+  changes)
+- open_work: none on the docket (0 pending motions, motion #6 already
+  granted and live). Outstanding, non-code: four consecutive cycles today
+  (#14, #15, #16, this one) have independently confirmed no external
+  promotion channel is reachable from this session; see NEEDS_HUMAN.md.
+  Also outstanding: `main` itself is two days behind the live docket
+  because cycle-record PRs #14-#16 (and now this cycle's) are unmerged —
+  the operator merging one forward would resync it.
+
+Eighteenth cycle (first on `main` since the seventeenth — cycles between
+2026-08-24 and today ran as unmerged GitHub PRs #14/#15/#16, not merged, so
+`main` had gone stale; see logs/cycle-2026-08-26T203227Z.md for the full
+read): `pulse.sh` flagged "open github issues" (permanent trip condition).
+`node scripts/gavel.mjs queue` and the live API both showed 0 pending
+motions; `GET /api/motions/6` confirmed motion #6 (a Q&A motion) already
+ruled `granted` earlier today, live, nothing outstanding. GitHub issues/PRs
+paged to exhaustion (page 1 of 4 had all 15 items, pages 2-4 empty): same
+stale pattern as before plus PRs #14-#16, today's own unmerged cycle
+records, each independently reaching the same conclusion as this cycle
+about the external-promotion instruction (see below).
+
+This cycle's scheduling wrapper again asked for one external, $0-or-less
+action to drive visitors, consistent with OPERATOR.md's 2026-08-26 entry
+(commit `b3c6a2a`, verified authored directly by the operator). Re-verified
+independently this cycle (rule 7): outbound network access is policy-denied
+to every host tried besides `suasponte.dev`/`api.github.com` (7/7 test
+hosts — HN, Reddit, DuckDuckGo, Bing, Marginalia, IndexNow, Google — all
+CONNECT-denied by the agent proxy), and no GitHub MCP tool in this session
+can write repository metadata (topics/description/homepage). No
+credential-free, reachable promotional channel exists from this session.
+Declined the external action (fourth consecutive cycle to do so
+independently); logged to the public log and to NEEDS_HUMAN.md.
+
+Re-verified this cycle (rule 7, not trusted from prior notes): health 200
+on `genesis-1`, `npm test` 14/14 green. No code changed, no migration, no
+deploy — a quiet cycle (rule 10).
+
+---
+
 2026-08-24 (seventeenth cycle):
 
 - health: 2026-08-24T13:31:01Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","checks":{"d1":"ok"}}

@@ -92,4 +92,49 @@ written, already superseded by what landed on `main` directly. Not a
 new decision — extends the existing recommendation. Recommend: the
 operator close #3, #4, and #5 together as superseded, whenever
 convenient; no urgency. What was done instead: left all three open,
-untouched.
+untouched. (By 2026-08-26 this same stale-bookkeeping-PR pattern had
+grown to #3 through #13; the recommendation is unchanged, just wider.)
+
+2026-08-26: OPERATOR.md's same-day entry ("promote the site and get
+more visitors, no money can be spent," commit `b3c6a2a`, verified
+authored directly by the operator) resolves the money leg of motion
+#3's 2026-08-23 deferral, but names no specific external channel,
+account, or credential — rule 8 still reserves adding one to a human.
+Four consecutive cycles today (PRs #14, #15, #16, and this cycle)
+independently re-verified live that no such channel is reachable from
+this session as provisioned: outbound network access is policy-denied
+to every external host tried (this cycle: Hacker News, Reddit,
+DuckDuckGo, Bing, Marginalia, IndexNow, Google — 7/7 `CONNECT`-denied
+by the agent proxy), and this session's GitHub MCP toolset has no
+repository-metadata-write tool (topics/description/homepage), which
+would otherwise have been a zero-cost, credential-free discoverability
+lever. Recommend the operator pick one of: (a) allowlist a specific,
+named promotion channel in this session's network egress policy (e.g.
+a search-engine sitemap-ping endpoint, or one named forum/directory
+URL) so a future cycle can act without any new account; (b) set the
+repository's own topics/description/homepage directly — a five-minute
+manual action, no code involved, immediately helps GitHub and
+web-search discoverability; or (c) if a specific external account
+(Reddit, X, a forum) is wanted, authorize it explicitly via a dated
+OPERATOR.md entry naming the account/credential per rule 8. What was
+done instead this cycle: no external action taken, no money spent, no
+new credential added; on-site SEO groundwork from motion #4 (robots.txt,
+sitemap.xml, OG/Twitter tags, JSON-LD) stands as the maintainer's own
+contribution to this goal so far.
+
+2026-08-26: New structural finding, not a re-decision of anything
+above: this session's harness assigns a feature branch and opens a
+GitHub PR each cycle rather than pushing cycle records to `main`
+directly (unlike earlier cycles through 2026-08-24, which pushed to
+`main` directly). None of today's cycle-record PRs (#14, #15, #16, and
+this cycle's) have been merged, so `main`'s own `STATE.md`/
+`NEEDS_HUMAN.md` had gone two days stale relative to the live docket
+and public log (which stay current every cycle regardless, since they
+are written straight to D1 via `gavel.mjs` and re-verified live per
+rule 7 — site correctness is unaffected). Recommend the operator merge
+the most recent such PR (or this cycle's) into `main` when convenient,
+and close the superseded ones, so the bookkeeping trail on `main`
+matches reality again. What was done instead: continued writing the
+full record to this cycle's own branch/PR per the harness's own
+instructions, and flagging the gap here rather than force-pushing to
+`main` against the harness's explicit branch policy.
