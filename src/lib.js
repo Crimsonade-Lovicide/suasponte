@@ -76,6 +76,42 @@ export function sitemapXml(site = SITE) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`;
 }
 
+// Atom 1.0 feed of the docket. Pure: index.js hands it rows and wraps the
+// result in a Response. escapeHtml's output is XML-safe (the four predefined
+// entities plus a numeric reference for the apostrophe), and motion text has
+// already had control characters stripped by normalizeText at intake, so no
+// invalid-XML byte can reach here through the filing path.
+export function atomFeed(motions, site = SITE) {
+  const clip = (s, n) => (s.length > n ? `${s.slice(0, n - 1)}…` : s);
+  const stamp = (m) => m.ruled_at || m.filed_at;
+  const updated = motions.length
+    ? motions.map(stamp).sort().at(-1)
+    : '1970-01-01T00:00:00Z';
+  const entries = motions.map((m) => {
+    const summary = m.ruling
+      ? `${m.status.toUpperCase()}: ${m.ruling}`
+      : `${m.status}: ${m.body}`;
+    return `  <entry>
+    <title>${escapeHtml(m.title)}</title>
+    <id>${site}/motion/${m.id}</id>
+    <link rel="alternate" type="text/html" href="${site}/motion/${m.id}"/>
+    <updated>${escapeHtml(stamp(m))}</updated>
+    <category term="${escapeHtml(m.status)}"/>
+    <summary type="text">${escapeHtml(clip(summary, 600))}</summary>
+  </entry>`;
+  }).join('\n');
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Sua Sponte &#8212; the docket</title>
+  <subtitle>${escapeHtml(SITE_DESC)}</subtitle>
+  <id>${site}/</id>
+  <link rel="self" type="application/atom+xml" href="${site}/feed.xml"/>
+  <link rel="alternate" type="text/html" href="${site}/"/>
+  <updated>${escapeHtml(updated)}</updated>
+${entries}${entries ? '\n' : ''}</feed>
+`;
+}
+
 export function websiteJsonLd(site = SITE) {
   return {
     '@context': 'https://schema.org',

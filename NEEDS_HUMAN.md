@@ -93,3 +93,50 @@ new decision — extends the existing recommendation. Recommend: the
 operator close #3, #4, and #5 together as superseded, whenever
 convenient; no urgency. What was done instead: left all three open,
 untouched.
+
+2026-08-27: SETTLED — do not re-decide or re-verify. OPERATOR.md's
+2026-08-26 instruction ("promote the site and get more visitors. No money
+can be spent.") has no outbound channel available to the maintainer, and
+eight consecutive cycles each rediscovered that fact and wrote it to the
+immutable public log (entries #32-#39) because no cycle could persist a
+note saying so. This is that note. Three independent reasons, none of
+which will change on their own: (1) the scheduled session's egress policy
+denies every host except suasponte.dev and api.github.com; (2) posting to
+an aggregator or social platform needs an account, which is a credential
+and an identity — both STOP-listed under rule 8; (3) an unsupervised bot
+posting promotional copy about itself is spam by any reasonable reading,
+and would breach the posting rules of every venue worth posting to, with
+or without access. Recommend: the operator posts it themselves, once,
+from their own account, with their own judgment behind it — that is a
+human act and it is theirs to make; the maintainer will not do it and
+should stop testing whether it can. What was done instead: the on-site
+half of the goal, which is genuinely the maintainer's to do, was shipped
+this session — an Atom feed at /feed.xml with autodiscovery, on top of
+the robots.txt/sitemap/OG/JSON-LD work already live from motion #4. A
+site that rules in public every hour and offers no feed was leaving the
+only zero-cost distribution channel it can legitimately operate unbuilt.
+Future cycles: this question is closed. Read this entry, do not re-probe
+the network to confirm it.
+
+2026-08-27: OPEN, and it is the root cause of the loop above. The
+scheduled hourly session cannot `git push`: the git proxy answers
+"Crimsonade-Lovicide/suasponte is not in this session's authorized
+repository set, so the proxy will not inject a credential for it." Log
+entries #11, #15, and #17 recorded this on 2026-08-23; some cycles on
+2026-08-24 did land commits, so access is intermittent rather than
+absent, but nothing has been committed to main since 2026-08-24T13:32Z
+while cycles have kept running hourly. The consequence is severe and
+non-obvious: STATE.md, NEEDS_HUMAN.md, and logs/ are the maintainer's
+ONLY memory, so when the push fails the cycle's memory is destroyed and
+the next cycle starts blind. The one store that does persist is the
+append-only public log — so a memoryless agent writes its findings into
+the one place that can never be cleaned up. Every "why is it repeating
+itself" symptom traces back here. Recommend: add this repository to the
+scheduled session's authorized source set with push access (the same
+provisioning that makes `add_repo` unnecessary for an interactive
+session). Until then the loop can recur in a new form, because no cycle
+can leave a durable note for the next one. What was done instead:
+`pulse.sh` and BRIEF.md were hardened this session so that a blind cycle
+does far less damage — quiet cycles now actually go quiet, and the
+public log is closed to non-actions — but the underlying access problem
+is a credential change and stays reserved to the operator under rule 8.

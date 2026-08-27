@@ -1,8 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import {
   escapeHtml, normalizeText, validateMotion, parseCursor,
-  STATUSES, LIMITS, CANON, VERSION, SITE,
+  STATUSES, LIMITS, CANON, VERSION, atomFeed, SITE,
   robotsTxt, sitemapXml, websiteJsonLd,
 } from '../src/lib.js';
 
@@ -110,4 +111,75 @@ test('websiteJsonLd is valid, schema.org WebSite data describing the site', () =
   assert.ok(ld.name.length > 0);
   assert.ok(ld.description.length > 0);
   assert.doesNotThrow(() => JSON.stringify(ld));
+});
+
+/* ── the Atom feed (added with the /feed.xml route) ─────────────────── */
+
+const SAMPLE = [
+  { id: 7, filed_at: '2026-08-26T10:00:00Z', title: 'Motion to test the feed',
+    body: 'A body.', status: 'granted', ruled_at: '2026-08-26T11:00:00Z',
+    ruling: 'Granted for the reasons stated.' },
+  { id: 6, filed_at: '2026-08-25T09:00:00Z', title: 'An unruled motion',
+    body: 'Still waiting.', status: 'pending', ruled_at: null, ruling: null },
+];
+
+test('atomFeed emits a well-formed Atom document', () => {
+  const x = atomFeed(SAMPLE);
+  assert.match(x, /^<\?xml version="1\.0" encoding="UTF-8"\?>\n<feed xmlns="http:\/\/www\.w3\.org\/2005\/Atom">/);
+  assert.match(x, /<link rel="self" type="application\/atom\+xml" href="https:\/\/suasponte\.dev\/feed\.xml"\/>/);
+  assert.match(x, /<\/feed>\n$/);
+  assert.equal((x.match(/<entry>/g) || []).length, 2);
+  assert.equal((x.match(/<entry>/g) || []).length, (x.match(/<\/entry>/g) || []).length);
+});
+
+test('atomFeed dates each entry by its ruling, falling back to its filing', () => {
+  const x = atomFeed(SAMPLE);
+  assert.match(x, /<id>https:\/\/suasponte\.dev\/motion\/7<\/id>\n.*\n\s*<updated>2026-08-26T11:00:00Z<\/updated>/);
+  assert.match(x, /<id>https:\/\/suasponte\.dev\/motion\/6<\/id>\n.*\n\s*<updated>2026-08-25T09:00:00Z<\/updated>/);
+  // the feed's own <updated> is the newest stamp in the set
+  assert.match(x, /<updated>2026-08-26T11:00:00Z<\/updated>\n\s*<entry>/);
+});
+
+test('atomFeed escapes hostile motion text into XML-safe output', () => {
+  const x = atomFeed([{ id: 1, filed_at: '2026-08-26T10:00:00Z',
+    title: '</title><script>alert(1)</script> & "quotes"', body: 'a<b>c & d',
+    status: 'pending', ruled_at: null, ruling: null }]);
+  assert.ok(!x.includes('<script>'), 'raw script tag leaked into the feed');
+  assert.ok(!x.includes('</title><script>'), 'title element was breakable');
+  assert.match(x, /&lt;script&gt;/);
+  assert.match(x, /&amp;/);
+  // no bare ampersand may survive: every & must begin an entity reference
+  assert.ok(!/&(?!(amp|lt|gt|quot|#\d+);)/.test(x), 'unescaped ampersand in feed');
+});
+
+test('atomFeed handles an empty docket without emitting a broken feed', () => {
+  const x = atomFeed([]);
+  assert.ok(!x.includes('<entry>'));
+  assert.match(x, /<updated>1970-01-01T00:00:00Z<\/updated>/);
+  assert.match(x, /<\/feed>\n$/);
+});
+
+test('atomFeed clips a very long summary instead of dumping the whole body', () => {
+  const x = atomFeed([{ id: 1, filed_at: '2026-08-26T10:00:00Z', title: 'Long',
+    body: 'x'.repeat(5000), status: 'pending', ruled_at: null, ruling: null }]);
+  const summary = x.match(/<summary type="text">([\s\S]*?)<\/summary>/)[1];
+  assert.ok(summary.length <= 600, `summary was ${summary.length} chars`);
+  assert.ok(summary.endsWith('…'));
+});
+
+/* ── pulse.sh regression guard ──────────────────────────────────────── */
+
+test('pulse.sh counts real issues only, never pull requests', () => {
+  const pulse = readFileSync(new URL('../pulse.sh', import.meta.url), 'utf8');
+  // The original probe tested the raw /issues response for '"number"'. Because
+  // that endpoint returns pull requests too, the standing open PRs pinned the
+  // probe to "work" on every cycle for days and the quiet path never ran.
+  assert.ok(!/case "\$I" in \*'"number"'\*/.test(pulse),
+    'pulse.sh regressed to the naive "number" presence test');
+  assert.match(pulse, /pull_request/,
+    'pulse.sh must filter items carrying a pull_request key');
+  // curl does the fetching: node's global fetch ignores the sandbox proxy and
+  // would report every host unreachable, pinning the probe to "quiet".
+  assert.match(pulse, /curl -fsS[\s\S]{0,200}api\.github\.com/,
+    'pulse.sh must fetch GitHub with curl, not node fetch');
 });

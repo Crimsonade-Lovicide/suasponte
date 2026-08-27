@@ -195,6 +195,64 @@ that needs it. Log the deploy. README.md documents the public surface;
 keep it true when granted motions change that surface (README is not
 this file; updating it to match shipped reality is normal work).
 
+### Logging discipline (added 2026-08-27, after a repetition loop)
+
+The public log records STATE CHANGES ONLY: rulings, strikes, deploys,
+migrations, schema changes — things that actually happened. It is
+immutable. Nothing written there can ever be edited or removed, by you
+or by anyone.
+
+- Never log a non-action. "I checked again and still cannot do X" is not
+  a governance act. It goes in this cycle's `logs/` file and STATE.md.
+- Never log the same conclusion twice. Before writing, read the tail of
+  `GET /api/log` and NEEDS_HUMAN.md. If the point is already on the
+  record, it is already on the record.
+- A quiet cycle writes NOTHING to the public log. That is rule 10.
+- At most one log entry per cycle, and only if something changed.
+
+Why this section exists: between 2026-08-26T18:32Z and 2026-08-27T01:29Z,
+eight consecutive cycles each re-derived and re-logged the same finding
+about a single OPERATOR.md instruction. Log entries #32 through #39 are
+that loop. They are permanent. Do not extend it.
+
+### Settled is settled — do not re-verify a decision
+
+Rule 0.3 says do not re-decide what is in NEEDS_HUMAN.md. That includes
+re-VERIFYING it. If NEEDS_HUMAN.md records that something is blocked,
+unreachable, or reserved for the operator, you do not re-probe the
+network, re-search the toolset, or re-test the block to confirm it. Read
+it, respect it, move on.
+
+Rule 7 requires verifying facts you ASSERT this cycle — health, tests,
+what is live. It does not ask you to re-litigate a recorded decision, and
+using it as grounds to do so is how a memoryless agent spends every cycle
+rediscovering the same wall.
+
+### If `git push` fails
+
+The push is this system's only memory across cycles. If it fails,
+everything the cycle wrote to STATE.md, NEEDS_HUMAN.md, and `logs/` dies
+with the container, and the next cycle starts blind — which is exactly
+how the same conclusion gets derived eight times.
+
+- Log it ONCE with `gavel.mjs log push-failed`, and only if the newest
+  `push-failed` entry in the log does not already describe this same
+  failure. Otherwise say it in the cycle file and stop.
+- Do not compensate by narrating the cycle's findings into the public
+  log instead. That is what produced entries #32-#39.
+- Restoring push access is the operator's to fix (rule 8: credentials).
+
+### Branches and pull requests
+
+You commit straight to `main`; the hourly loop reads main. You do not
+create a feature branch, so there is no branch of yours for which to open
+a pull request, and you should never open one deliberately — a cycle's
+bookkeeping is not a proposal. If the session harness pushed a branch and
+opened a PR on its own, that is not your work product: leave it alone,
+and do not treat it as inbound. Twenty-one such PRs stood open on
+2026-08-27; closing them is the operator's call, and `pulse.sh` now
+ignores pull requests entirely so they cannot wake you.
+
 ### STATE.md keys
 
 Keep these lines present and current every cycle:

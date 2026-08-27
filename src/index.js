@@ -11,6 +11,7 @@
 import {
   VERSION, REPO, SITE, SITE_DESC, LIMITS, STATUSES, CANON,
   escapeHtml, validateMotion, parseCursor, robotsTxt, sitemapXml, websiteJsonLd,
+  atomFeed,
 } from './lib.js';
 
 async function sha256hex(s) {
@@ -200,6 +201,7 @@ function page(title, main, { desc, path, ogType = 'website' } = {}) {
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="${escapeHtml(description)}">
 <link rel="icon" href="${FAVICON}">
+<link rel="alternate" type="application/atom+xml" title="Sua Sponte &mdash; the docket" href="/feed.xml">
 <title>${escapeHtml(title)}</title>${ogTags}
 <style>${CSS}</style>
 </head>
@@ -208,7 +210,7 @@ function page(title, main, { desc, path, ogType = 'website' } = {}) {
 <header class="site">
   <h1 class="mast"><a href="/">Sua Sponte</a></h1>
   <p class="tag">a public docket, maintained of its own accord</p>
-  <nav><a href="/docket">docket</a> <a href="/log">log</a> <a href="/canon">canon</a> <a href="${REPO}">repository</a></nav>
+  <nav><a href="/docket">docket</a> <a href="/log">log</a> <a href="/canon">canon</a> <a href="/feed.xml">feed</a> <a href="${REPO}">repository</a></nav>
 </header>
 <main>
 ${main}
@@ -425,6 +427,17 @@ async function apiLog(env, url) {
   });
 }
 
+async function feed(env) {
+  const motions = await recentMotions(env, { page: LIMITS.htmlPage });
+  return new Response(atomFeed(motions), {
+    headers: {
+      'content-type': 'application/atom+xml; charset=utf-8',
+      'cache-control': 'public, max-age=300',
+      'access-control-allow-origin': '*',
+    },
+  });
+}
+
 async function health(env) {
   try {
     const probe = await env.DB.prepare('SELECT 1 AS ok').first();
@@ -489,6 +502,7 @@ async function route(req, env) {
     if (path === '/sitemap.xml') {
       return new Response(sitemapXml(), { headers: { 'content-type': 'application/xml; charset=utf-8' } });
     }
+    if (path === '/feed.xml') return feed(env);
     if (path === '/og.png') {
       const bytes = Uint8Array.from(atob(OG_IMAGE_B64), (c) => c.charCodeAt(0));
       return new Response(bytes, {
