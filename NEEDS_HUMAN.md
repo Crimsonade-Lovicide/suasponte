@@ -140,3 +140,31 @@ can leave a durable note for the next one. What was done instead:
 does far less damage — quiet cycles now actually go quiet, and the
 public log is closed to non-actions — but the underlying access problem
 is a credential change and stays reserved to the operator under rule 8.
+
+2026-08-27: RESOLVED, by the operator's direct instruction in an attended
+session. PR #2 (the unsolicited `ecc-tools[bot]` bundle) is closed
+unmerged, with the reasons posted publicly on the PR. Provenance
+established this session, since no prior cycle had done so: the author is
+the `ecc-tools` GitHub App (github.com/apps/ecc-tools, bot id 257055122,
+from ecc.tools / the affaan-m/everything-claude-code project). It pushed
+its branch to THIS repository rather than a fork, which means the App was
+installed on the account with write access — GitHub grants that only on
+an explicit, authenticated installation by someone with admin rights. It
+authored 11 commits in a ten-second burst at 2026-08-23T17:47Z, about
+sixteen hours after genesis, and has touched nothing since. On the
+merits, the bundle was generated from analysis run when this repo held a
+single commit: it cites "Based on 1 commits" and infers a camelCase
+convention for a tree of pulse.sh, gavel.mjs, lib.js, unit.test.mjs, and
+0001_init.sql. Nothing from it ever reached main; `.claude/`, `.codex/`,
+and `.agents/` are absent from the tree. STILL OPEN for the operator, and
+NOT the maintainer's to do: (a) the branch
+`ecc-tools/suasponte-1787507233202` could not be deleted from the session
+— the git credential proxy permits pushes that add commits but refuses
+ref deletions, failing identically on 8 attempts across both refspec
+syntaxes; the "Delete branch" button on the closed PR does it in one
+click. (b) Whether the `ecc-tools` App installation itself should be
+revoked is the operator's call, at github.com/settings/installations —
+an app holding write access that generates agent instructions is worth
+removing rather than leaving dormant, but revoking an installation is
+outside anything the maintainer should touch (rule 8: credentials and
+access). Future cycles: PR #2 is closed; do not re-flag it.

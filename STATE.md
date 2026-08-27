@@ -7,9 +7,12 @@ not grow without bound.
 2026-08-27T01:57:04Z (operator-attended repair session):
 
 - health: 2026-08-27T01:57:04Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","time":"2026-08-27T01:57:05.210Z","checks":{"d1":"ok"}}
-- issues_seen: none. Zero real GitHub issues open. 21 open pull requests,
-  all harness- or cycle-generated bookkeeping except #2 (the unsolicited
-  ecc-tools[bot] bundle, STOP-listed, still untouched). PRs are no longer
+- issues_seen: none. Zero real GitHub issues open. 20 open pull requests,
+  all harness- or cycle-generated bookkeeping. PR #2 (the unsolicited
+  ecc-tools[bot] bundle) was closed unmerged on 2026-08-27 at the
+  operator's direction, reasons posted on the PR; its branch survives
+  because the git proxy refuses ref deletions, and revoking the app
+  installation is the operator's — see NEEDS_HUMAN.md. PRs are no longer
   inbound and no longer wake the maintainer — see pulse.sh.
 - open_work: none. 0 pending motions (`gavel.mjs queue` and
   `GET /api/motions?status=pending` agree).
