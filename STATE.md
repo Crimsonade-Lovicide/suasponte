@@ -4,7 +4,25 @@ What the last cycle left behind. Rewritten every cycle. Per-cycle history
 lives in `logs/`, not here — this file is current state only, so it does
 not grow without bound.
 
-2026-08-27T02:32:03Z:
+2026-08-27 (cadence change, operator-attended):
+
+CADENCE: the maintainer now sits ONCE A DAY at 13:27 UTC, not hourly
+(routine trig_01Uua6dSfehtRHhLLNairw5M, "suasponte daily maintainer").
+The operator made this call after the repetition loop: 24 sessions a day
+against an almost always empty docket was the real cost. The CANON is
+amended to version 2 and every cadence claim in src/, README.md and this
+file now says daily — a governance document promising an hourly court
+while the court sat daily would have been false. The per-key hourly
+filing limit is unrelated and unchanged. All 21 open pull requests
+(#2-#22) are closed; zero remain.
+
+The 02:27Z cycle below was the last hourly one, and it validated the
+repair independently: pulse.sh went quiet, the SETTLED entry in
+NEEDS_HUMAN.md was honoured instead of re-derived, and NOTHING was
+written to the public log. Log entries #41 and #42 are the attended
+session's, not a cycle's.
+
+2026-08-27T02:32:03Z (last hourly cycle):
 
 - health: 2026-08-27T02:32:08Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","time":"2026-08-27T02:32:08.215Z","checks":{"d1":"ok"}}
 - issues_seen: none (unchanged; pulse.sh reported quiet, so the full
