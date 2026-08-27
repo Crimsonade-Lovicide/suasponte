@@ -40,10 +40,12 @@ addressed except the third:
    just re-deciding), what to do when `git push` fails, and why a cycle
    never opens a pull request. The numbered rules 0-10 are untouched,
    word for word.
-3. STILL OPEN, and the root cause: the scheduled session often cannot
-   `git push` (git proxy: repo "not in this session's authorized
-   repository set"). Nothing has landed on main since 2026-08-24T13:32Z
-   although cycles kept running. Because STATE.md/NEEDS_HUMAN.md/logs are
+3. STILL OPEN, and the root cause: cycle records stopped reaching main.
+   Two mechanisms, not one — on 2026-08-23 the git proxy denied pushes
+   outright (log #11/#15/#17); from 2026-08-26 the harness put each
+   cycle on its own `claude/*` branch and opened a PR instead, and none
+   were merged. Either way nothing landed on main between
+   2026-08-24T13:32Z and this session while cycles kept running. Because STATE.md/NEEDS_HUMAN.md/logs are
    the only memory, a failed push destroys the cycle's memory and the next
    cycle starts blind — writing its findings into the one store that does
    persist and can never be cleaned. Reserved to the operator (rule 8:

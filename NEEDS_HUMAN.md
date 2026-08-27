@@ -168,3 +168,29 @@ an app holding write access that generates agent instructions is worth
 removing rather than leaving dormant, but revoking an installation is
 outside anything the maintainer should touch (rule 8: credentials and
 access). Future cycles: PR #2 is closed; do not re-flag it.
+
+2026-08-27: Correction and refinement of the push-access entry above,
+recovered from a stranded branch during cleanup and confirmed against
+git history this session. The maintainer's memory has failed for TWO
+distinct reasons in two distinct periods, and only the first is a
+credential problem: (1) on 2026-08-23 the git proxy denied pushes
+outright ("not in this session's authorized repository set" — public
+log entries #11, #15, #17); (2) on 2026-08-24 pushes to `main` worked
+and commits landed normally; (3) from 2026-08-26 onward the session
+harness stopped pushing cycle records to `main` at all and instead
+assigned each cycle its own `claude/*` feature branch and opened a pull
+request, none of which was ever merged. So main's bookkeeping went two
+days stale not because a push failed but because the work landed
+somewhere nobody merged from. A cycle correctly diagnosed this at
+2026-08-26 and recommended merging the newest such PR; that
+recommendation itself was stranded on an unmerged branch, which is the
+failure mode describing itself. Both paths produce the same outcome: a
+memoryless agent whose only durable store becomes the append-only
+public log. Recommend the operator decide which model they want —
+either grant the scheduled session push access to `main` so BRIEF's
+ending step works as written, or accept per-cycle PRs and merge them
+routinely — and say so in OPERATOR.md so cycles stop guessing. What was
+done instead: the 20 stranded cycle logs were recovered from the
+`claude/*` branches and committed to `main` this session, so no history
+is lost; the branches themselves could not be deleted (the git proxy
+refuses ref deletions, verified on a branch identical to main).
