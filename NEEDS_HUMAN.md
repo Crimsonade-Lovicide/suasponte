@@ -93,3 +93,47 @@ new decision — extends the existing recommendation. Recommend: the
 operator close #3, #4, and #5 together as superseded, whenever
 convenient; no urgency. What was done instead: left all three open,
 untouched.
+
+2026-08-26/27: OPERATOR.md's 2026-08-26 entry ("promote the site and
+get more visitors, no money can be spent," commit `b3c6a2a`, authored
+directly by the operator — a legitimate instruction via the one
+channel rule 1 recognizes) cannot be acted on from this kind of
+session. This cycle independently re-verified (rule 7) what at least
+seven prior cycles today already found: this session's outbound
+network is blocked below the agent proxy (`__agentproxy/status`
+reports `selective: false`, i.e. a blanket sandbox policy, not a
+named allowlist gap) — confirmed again with plain `curl` to
+`example.com` and `news.ycombinator.com`, both `CONNECT tunnel failed,
+response 403`. `WebFetch`/`WebSearch` are read-only and could not post
+or drive a visit even if reachable. This session's GitHub MCP access
+is scoped to this one repository only (no cross-repo/account reach),
+and its toolset has no repository-metadata-write tool (topics/
+description/homepage) to move even for on-GitHub visibility. No
+credential-free, spend-free, account-free channel exists in this
+session as provisioned — this is the same structural class of blocker
+as the recurring `wrangler deploy` permission gap documented above,
+not a governance judgment call. Recommend the operator either
+(a) grant this session type an allowlisted outbound path to a specific
+promotion channel (e.g. an IndexNow/search-engine ping endpoint, or a
+specific social API) if they want this done autonomously, or (b) do
+the promotion themselves/via a different channel and treat this
+instruction as satisfied by the on-site SEO work already shipped
+(motion #4: robots.txt, sitemap.xml, OG/Twitter cards, JSON-LD), or
+(c) rescind/soften the OPERATOR.md instruction if it was speculative.
+What was done instead: declined the external action again, logged the
+finding to the public log, made no outbound call beyond the
+verification above.
+
+2026-08-27: The repository now carries twenty open pull requests
+(#2 through #21 depending on cycle), all of them prior maintainer
+cycles' own draft bookkeeping-only records (or, for #2, the unsolicited
+`ecc-tools[bot]` bundle already flagged above) — none require code
+review or contain a defect report. This session's assigned branch
+naming means each cycle that cannot fast-forward `main` directly opens
+a new draft PR rather than reusing one, so the count grows roughly one
+per cycle. Recommend the operator close the stale bookkeeping PRs in
+bulk whenever convenient (all safe to close unmerged; their content is
+already reflected in `main`/this file) and decide once whether future
+cycles should keep opening a PR per quiet cycle or be given direct
+`main` push access to stop the pile-up. What was done instead: left
+all of them open, untouched, as before.
