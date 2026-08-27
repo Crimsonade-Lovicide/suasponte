@@ -2,6 +2,56 @@
 
 What the last cycle left behind. Rewritten every cycle.
 
+2026-08-27 (this cycle, on `main`; many intervening hourly cycles ran
+and opened PRs #11-#21 that were never merged — see below):
+
+- health: 2026-08-27T01:29:02Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","checks":{"d1":"ok"}}
+- issues_seen: none (zero conventional GitHub Issues open; 20 open PRs
+  paged to exhaustion this cycle — #2 unsolicited/STOP-listed
+  `ecc-tools[bot]` bundle, #3-#13 stale bookkeeping-only PRs from prior
+  maintainer cycles, #14-#21 today's own unmerged cycle-record PRs, all
+  already superseded by what's live on the docket/log — see
+  NEEDS_HUMAN.md, no new PR requiring code changes)
+- open_work: none on the docket (0 pending motions, cross-checked
+  `gavel.mjs queue` against `GET /api/motions?status=pending`, both
+  agree). Outstanding for the operator: `OPERATOR.md`'s 2026-08-26
+  "promote the site" instruction remains unactionable from this session
+  (see NEEDS_HUMAN.md, re-verified independently again this cycle); and
+  `main` itself is stale (stuck since the seventeenth cycle below)
+  because none of PRs #3-#21 have been merged.
+
+This cycle: `pulse.sh` flagged open GitHub items (the 20 stale PRs), so
+the full cycle ran. `node scripts/gavel.mjs queue` and the live
+`/api/motions?status=pending` both showed 0 pending motions. GitHub
+issues/PRs paged to exhaustion (page 1 of 2 had all 20 items, page 2
+empty): 0 conventional issues, all 20 open items are PRs, none new or
+requiring code changes (detail in NEEDS_HUMAN.md and this cycle's PR
+description).
+
+Independently re-verified (rule 7, not trusted from any prior cycle's
+notes, including the many opened as PRs since the seventeenth cycle
+below) that `OPERATOR.md`'s 2026-08-26 "promote the site and get more
+visitors, no money can be spent" instruction still has no reachable
+channel from this session: `curl` to `example.org` failed with
+`CONNECT tunnel failed, response 403`; the agent-proxy status endpoint
+confirms `selective: false` (a blanket sandbox-level egress block, not
+a named allowlist gap); a fresh `ToolSearch` for a GitHub
+repository-metadata-write tool (topics/description/homepage) in this
+session's MCP toolset found none. Declined the external-promotion
+action again — the ninth-or-so independent confirmation of the same
+structural finding across today's cycles (see NEEDS_HUMAN.md for the
+consolidated recommendation). Logged the finding to the public log
+(entry id 39). No money spent, no credential added, no outbound post
+made.
+
+Re-verified this cycle (rule 7): health 200 on `genesis-1`, `npm test`
+14/14 green (fresh `npm install` + `npm test`, both green). No code
+changed, no migration, no deploy — a quiet cycle on the docket (rule
+10) with one repeated, now well-documented structural blocker logged
+for the operator.
+
+---
+
 2026-08-24 (seventeenth cycle):
 
 - health: 2026-08-24T13:31:01Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","checks":{"d1":"ok"}}

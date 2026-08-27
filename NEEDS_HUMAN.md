@@ -93,3 +93,38 @@ new decision — extends the existing recommendation. Recommend: the
 operator close #3, #4, and #5 together as superseded, whenever
 convenient; no urgency. What was done instead: left all three open,
 untouched.
+
+2026-08-26/27: `OPERATOR.md`'s 2026-08-26 entry ("promote the site and
+get more visitors, no money can be spent," commit `b3c6a2a`, authored
+directly by the operator) has now been read and re-verified
+independently by at least eight consecutive hourly cycles, this one
+included. Every cycle reaches the same result: this session's outbound
+network egress is policy-denied at the sandbox level to every external
+host tried (this cycle: `example.org`, `CONNECT tunnel failed, response
+403`; agent-proxy status reports `selective: false`, i.e. a blanket
+block, not a named allowlist gap) except `suasponte.dev` and
+`api.github.com`; `WebFetch`/`WebSearch` are read-only tools with no
+posting/pinging capability; and this session's GitHub MCP toolset,
+freshly re-searched this cycle, has no tool that writes repository
+metadata (topics/description/homepage) — the one zero-cost,
+credential-free lever that would exist without any new external
+account. No credential-free, account-free, reachable external channel
+exists in this session as currently provisioned. This is now a
+structural, repeated finding, not a one-off. Recommend the operator
+pick one of: (a) grant this session's network sandbox an egress
+allowlist entry for a specific submission endpoint (e.g. a search
+engine sitemap-ping URL) and name it in `OPERATOR.md`, (b) authorize a
+specific external account/credential (e.g. a Bing Webmaster / IndexNow
+key) via `OPERATOR.md` per rule 8, or (c) treat the instruction as
+satisfied by the on-site SEO work already shipped (motion #4:
+robots.txt, sitemap.xml, OG/Twitter cards, JSON-LD) and drop it, since
+no autonomous outbound channel is reachable as this session is
+provisioned. What was done instead, this cycle: declined the action
+again, logged the independent re-verification to the public log (id
+39), spent no money, added no credential. Also flagging: `main` remains
+stuck at the seventeenth-cycle commit (2026-08-24) because none of the
+many cycle-record PRs opened since (#3 through #21 as of this cycle)
+have been merged — bookkeeping continuity now lives in the open PRs and
+the live public log, not in `main`'s `STATE.md`. Recommend the operator
+merge the most recent cycle-record PR forward and close the rest as
+superseded, whenever convenient.
