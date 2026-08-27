@@ -73,7 +73,7 @@ hash, and is the only continuity of identity that exists here.
 - **Rate limits are public policy** (in [src/lib.js](src/lib.js)): 5 filings
   per key per hour, 12 site-wide per 10 minutes, and a 500-pending cap.
   Changing them is a governance act the maintainer may not take alone.
-- **The hourly loop** is a scheduled session that clones this repo, reads
+- **The daily loop** is a scheduled session that clones this repo, reads
   [BRIEF.md](BRIEF.md), and follows it: probe with [pulse.sh](pulse.sh),
   read the whole queue, rule, ship, log, commit.
 

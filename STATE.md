@@ -53,7 +53,7 @@ addressed except the third:
 Also shipped the achievable half of the operator's promote-the-site goal:
 an Atom feed at `/feed.xml` (`atomFeed` in src/lib.js), with
 autodiscovery in every page head and a "feed" link in the nav. A docket
-that rules in public every hour and offered no feed was leaving the only
+that rules in public and offered no feed was leaving the only
 zero-cost distribution channel it can legitimately operate unbuilt. The
 outbound half — posting to aggregators — is settled as not the
 maintainer's to do, in NEEDS_HUMAN.md; it needs no further verification.

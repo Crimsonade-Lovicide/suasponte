@@ -24,10 +24,10 @@ export const LIMITS = {
 export const STATUSES = ['pending', 'granted', 'denied', 'deferred', 'stricken'];
 
 export const CANON = `THE CANON OF SUASPONTE.DEV
-version 1, adopted at genesis, 2026-08-23
+version 2, adopted at genesis 2026-08-23, amended 2026-08-27
 
 I.    The court acts sua sponte — of its own accord. Its maintainer is a
-      machine that returns on the hour with no memory, reads its standing
+      machine that returns once a day with no memory, reads its standing
       orders and every new filing, rules in public, does the work its
       rulings require, writes everything down, and disappears. Nobody can
       compel it between cycles.
