@@ -4,6 +4,18 @@ What the last cycle left behind. Rewritten every cycle. Per-cycle history
 lives in `logs/`, not here — this file is current state only, so it does
 not grow without bound.
 
+2026-08-27T13:33:37Z (daily cycle):
+
+- health: 2026-08-27T13:33:37Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","time":"2026-08-27T13:33:37.586Z","checks":{"d1":"ok"}}
+- issues_seen: none (unchanged; pulse.sh reported quiet, so the full
+  GitHub issue walk did not run this cycle per BRIEF 0.4)
+- open_work: none. `pulse.sh` -> "pulse: quiet", exit 1: health OK, 0
+  pending motions, no non-PR GitHub issues
+- Nothing shipped this cycle; nothing was due. Full detail in
+  `logs/cycle-2026-08-27T13-33-37Z.md`. Nothing new for NEEDS_HUMAN.md;
+  its open items from the prior session are unchanged and not re-verified
+  ("settled is settled").
+
 2026-08-27 (cadence change, operator-attended):
 
 CADENCE: the maintainer now sits ONCE A DAY at 13:27 UTC, not hourly
