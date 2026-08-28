@@ -4,98 +4,24 @@ What the last cycle left behind. Rewritten every cycle. Per-cycle history
 lives in `logs/`, not here — this file is current state only, so it does
 not grow without bound.
 
-2026-08-27T13:33:37Z (daily cycle):
+2026-08-28T13:35:13Z (daily cycle):
 
-- health: 2026-08-27T13:33:37Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","time":"2026-08-27T13:33:37.586Z","checks":{"d1":"ok"}}
-- issues_seen: none (unchanged; pulse.sh reported quiet, so the full
-  GitHub issue walk did not run this cycle per BRIEF 0.4)
-- open_work: none. `pulse.sh` -> "pulse: quiet", exit 1: health OK, 0
-  pending motions, no non-PR GitHub issues
-- Nothing shipped this cycle; nothing was due. Full detail in
-  `logs/cycle-2026-08-27T13-33-37Z.md`. Nothing new for NEEDS_HUMAN.md;
-  its open items from the prior session are unchanged and not re-verified
-  ("settled is settled").
-
-2026-08-27 (cadence change, operator-attended):
-
-CADENCE: the maintainer now sits ONCE A DAY at 13:27 UTC, not hourly
-(routine trig_01Uua6dSfehtRHhLLNairw5M, "suasponte daily maintainer").
-The operator made this call after the repetition loop: 24 sessions a day
-against an almost always empty docket was the real cost. The CANON is
-amended to version 2 and every cadence claim in src/, README.md and this
-file now says daily — a governance document promising an hourly court
-while the court sat daily would have been false. The per-key hourly
-filing limit is unrelated and unchanged. All 21 open pull requests
-(#2-#22) are closed; zero remain.
-
-The 02:27Z cycle below was the last hourly one, and it validated the
-repair independently: pulse.sh went quiet, the SETTLED entry in
-NEEDS_HUMAN.md was honoured instead of re-derived, and NOTHING was
-written to the public log. Log entries #41 and #42 are the attended
-session's, not a cycle's.
-
-2026-08-27T02:32:03Z (last hourly cycle):
-
-- health: 2026-08-27T02:32:08Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","time":"2026-08-27T02:32:08.215Z","checks":{"d1":"ok"}}
-- issues_seen: none (unchanged; pulse.sh reported quiet, so the full
-  GitHub issue walk did not run this cycle per BRIEF 0.4)
-- open_work: none. `pulse.sh` -> "pulse: quiet", exit 1: health OK, 0
-  pending motions, no non-PR GitHub issues
-- Nothing shipped to the docket or codebase this cycle; nothing was due.
-  Full detail, including this cycle's attempt at the scheduler's one-off
-  "get visitors" action (blocked by the sandbox's own egress policy, no
-  account/credential created), is in `logs/cycle-2026-08-27T02-32-03Z.md`
-
-Repaired a repetition loop this session. Symptom: log entries #32-#39,
-eight consecutive cycles each re-deriving and re-logging the same finding
-about OPERATOR.md's 2026-08-26 promote-the-site instruction, permanently,
-into the append-only public log. Three compounding causes, all now
-addressed except the third:
-
-1. `pulse.sh` could never go quiet. It tested GitHub's `/issues`
-   response for '"number"', but that endpoint returns pull requests too,
-   and 21 PRs stand permanently open — so the probe reported work on
-   every cycle for four days and BRIEF's quiet path never once ran. Fixed:
-   items carrying a `pull_request` key are filtered out, pages are
-   walked so a real issue cannot hide behind a wall of PRs, curl does the
-   fetching (node's global fetch ignores the sandbox proxy and would have
-   pinned the probe to "quiet", hiding real abuse reports). Verified live:
-   `./pulse.sh` now prints "pulse: quiet" and exits 1, and still returns
-   "issues" when a non-PR item is present.
-2. The public log was absorbing non-actions. Fixed in BRIEF.md's
-   site-specific section: four new subsections covering logging discipline
-   (state changes only, never the same conclusion twice, a quiet cycle
-   writes nothing), settled-is-settled (rule 0.3 covers re-verifying, not
-   just re-deciding), what to do when `git push` fails, and why a cycle
-   never opens a pull request. The numbered rules 0-10 are untouched,
-   word for word.
-3. STILL OPEN, and the root cause: cycle records stopped reaching main.
-   Two mechanisms, not one — on 2026-08-23 the git proxy denied pushes
-   outright (log #11/#15/#17); from 2026-08-26 the harness put each
-   cycle on its own `claude/*` branch and opened a PR instead, and none
-   were merged. Either way nothing landed on main between
-   2026-08-24T13:32Z and this session while cycles kept running. Because STATE.md/NEEDS_HUMAN.md/logs are
-   the only memory, a failed push destroys the cycle's memory and the next
-   cycle starts blind — writing its findings into the one store that does
-   persist and can never be cleaned. Reserved to the operator (rule 8:
-   credentials). See NEEDS_HUMAN.md.
-
-Also shipped the achievable half of the operator's promote-the-site goal:
-an Atom feed at `/feed.xml` (`atomFeed` in src/lib.js), with
-autodiscovery in every page head and a "feed" link in the nav. A docket
-that rules in public and offered no feed was leaving the only
-zero-cost distribution channel it can legitimately operate unbuilt. The
-outbound half — posting to aggregators — is settled as not the
-maintainer's to do, in NEEDS_HUMAN.md; it needs no further verification.
-
-Verified this session, not trusted from notes: health 200 on
-`genesis-1`, `npm test` 20/20 green, both new tests confirmed red
-against the pre-fix code and green after, `/feed.xml` parsed as
-well-formed Atom by a strict XML parser both locally and live, hostile
-motion text round-trips as inert text, all ten routes 200. Deployed once
-this session. Nothing is half-finished.
-
-Still open, tracked in full in `NEEDS_HUMAN.md`, not repeated here per
-"settled is settled": the scheduled session's intermittent `git push`
-access to `main`, and whether the operator wants deploys human-gated
-going forward. Nothing new to add on either this cycle.
+- health: 2026-08-28T13:35:08Z -> 200 {"ok":true,"service":"suasponte","version":"genesis-1","time":"2026-08-28T13:35:08.142Z","checks":{"d1":"ok"}}
+- issues_seen: none (checked this cycle: GitHub `state=open` issues page 1
+  returned `[]` — zero open issues, zero open PRs)
+- open_work: none. Two motions filed since the last cycle, both
+  commercial solicitations (#7: third-party SEO registration; #8: paid
+  video-ad pitch) hitting the STOP list (external service / money) that
+  OPERATOR.md already settled categorically. Both ruled `denied` this
+  cycle (public log entries #43, #44) — no grant, nothing unfinished.
+- Nothing shipped to the codebase this cycle; no code defect was found,
+  no deploy was needed. Full detail in
+  `logs/cycle-2026-08-28T13-35-13Z.md`. Nothing new for NEEDS_HUMAN.md:
+  both rulings were within ordinary docket authority, resting on
+  already-settled facts (rule 0.3, "settled is settled").
+- Housekeeping: this file was trimmed back to a single current-state
+  block. It had accumulated several prior cycles' full narratives
+  in-line, which this file's own header says not to do ("rewritten every
+  cycle... does not grow without bound"); that history is preserved
+  verbatim in `logs/` (per-cycle) and in `NEEDS_HUMAN.md` (open
+  questions), so nothing was lost by trimming it here.
